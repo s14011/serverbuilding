@@ -56,5 +56,36 @@ ftp_proxy = 172.16.40.1:8888/
 8. プロキシの設定が終わったのでupdateする  
 ‘$ yum update‘
 
+## Wordpressに必要なやつのインストール
 
+1. PHP,Apacheのインストール  
+$ yum install -y unzip wget httpd php php-mysql php-gd php-mbstring
+2. mysqlのインストール  
+$wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+3. mysqlのリポジトリのインストール  
+$rpm -Uvh mysql-community-release-el7-5.noarch.rpm  
+設定ファイルを書き換える  
+$/etc/yum.repos.d/mysql-community.repo  
+[mysql-connectors-community]  
+enabled=1→enabled=0  
+[mysql-tools-community]  
+enabled=1→enabled=0  
+[mysql56-community]  
+enabled=1→enabled=0
 
+4. mysqlのインストール  
+$yum --enablerepo=mysql56-community install mysql-community-server
+5. MySQLとApacheを起動する  
+$systemctl start mysqld.service・・・MySQL  
+$systemctl start httpd.service・・・Apache
+6. MySQLとApacheをずっと起動したままにする  
+$systemctl enable mysqld.service  
+$systemctl enable mysqld.service
+7. SELinux無効設定  
+$vi /etc/sysconfig/selinuxを開いて下記を変更  
+SELINUX=enforcing→SELINUX=disabled
+8. firewalld設定・・・http,httpsを許可する  
+$firewall-cmd --add-service=http --zone=public --permanent  
+$firewall-cmd --add-service=https --zone=public --permanent
+
+## データベースの作成
