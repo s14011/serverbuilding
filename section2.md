@@ -84,5 +84,102 @@ Vagrantfileで変更した設定を反映させるには
 
 すると反映されます。ただし、再起動されますので注意してね。
 
-## 2-2 Wordpressを動かす(2)
+## 2-2 Wordpressを動かす
 
+### プロキシの設定
+
+1. $vi /etc/profileファイルを開く  
+PROXY='172.16.40.1:8888'    
+export http_proxy=$PROXY    
+export HTTP_PROXY=$PROXY    
+export HTTPS_PROXY=$PROXY    
+export https_proxy=$PROXY  
+↑を書く
+2. yumにプロキシを設定  
+$vi /etc/yum.conf ファイルに下記を追記  
+proxy=http://172.16.40.1:8888/
+3. wgetにプロキシを設定  
+$vi /etc/wgetrc ファイルに下記を追記  
+
+http_proxy = 172.16.40.1:8888/  
+https_proxy = 172.16.40.1:8888/  
+ftp_proxy = 172.16.40.1:8888/
+4.  プロキシの設定が終わったのでupdateする  
+$yum update
+
+## 2-2.wordpressに必要なものをインストール
+
+1. nginxのリポジトリのインストール
+$sudo yum install http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+2. nginxのパッケージのインストール   
+$ sudo yum install --enablerepo=nginx nginx
+3. サービスを起動  
+$ sudo systemctl start nginx
+4. PHPと必要なモジュールをインストール  
+$sudo yum -y install php-mysql php php-gd php-mbstring php-fpm
+5. php-fpm設定  
+sudo vi /etc/php-fpm.d/www.conf開いて  
+
+user = apache
+group = apach
+変更　↓
+user = nginx
+group = nginx
+
+6. 起動させる  
+$ sudo systemctl start php-fpm.service
+7. mariadbのインストール  
+$ sudo yum -y install mariadb mariadb-server
+8. サービスの起動  
+$ sudo systemctl start mariadb
+9. 設定  
+$ mysql_secure_installation  
+全部 y で!!!!!!!!!!!!!1!!!!!!!!
+10. 再起動  
+$ sudo systemctl restart mariadb
+11. root でログイン  
+$ mysql -u root -p
+12. wordpressで使うデータベースの作成  
+mysql> CREATE DATABASE データベース名;  
+13. ユーザーの作成  
+mysql> GRANT ALL PRIVILEGES ON データベース名.* to 'ユーザ名'@'localhost' IDENTIFIED BY '任意パスワード';  
+mysql> exit
+14. Wordpressをダウンロード  
+$ wget http://wordpress.org/latest.tar.gz
+15. 解凍  
+$ tar xzfv latest-ja.tar.gz
+16. 所有者とグループをnginxに変更  
+$ sudo chown -R nginx:nginx wordpress
+17. wordpressをディレクトリ/var/www/にいどう 
+$ mv wordpress /var/www
+18. default.confの中身を変更  
+rootをwordpressを置いた場所に変更
+root /var/www/;に変更  
+
+fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;  
+    ↓にかえる
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+19. nginxを再起動  
+$ sudo systemctl restart nginx
+
+20. wordpressフォルダのwp-config-sample.phpをコピーしてwp-config.phpを作成する  
+    wordpressフォルダの中でcp wp-config-sample.php wp-config.php
+21. コピーしたwp-config.phpの中を編集  
+$vi wp-config.phpで開く  
+
+WordPress のためのデータベース名  
+     define('DB_NAME', 'database_name_here');  
+    ↓
+     define('DB_NAME', 'mysqlで作ったデータベース名');  
+     MySQL データベースのユーザー名  
+     define('DB_USER', 'username_here');  
+    ↓
+     define('DB_USER', 'mysqlで作ったデータベースの所有者名');  
+     MySQL データベースのパスワード  
+     define('DB_PASSWORD', 'password_here');  
+    ↓
+     define('DB_PASSWORD', 'mysqlで作ったデータベースの所有者名のパスワード');  
+     
+22. 192.16.56.129/wordpress/wp-admin/ でアクセスする
+
+## 2-3
