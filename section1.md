@@ -29,32 +29,32 @@
 ## SSH接続の設定
 
 1. $vi /etc/sysconfig/network-scripts/ifcfg-enp0s3のファイルを開いてONBOOT=noをONBOOT=yesに変更する ifcfg-enp0s8のファイルも同じようにする
-2. '$/etc/sysconfig/network-scripts/ifup enp0s3'
-   '$/etc/sysconfig/network-scripts/ifup enp0s8'
+2. ‘$/etc/sysconfig/network-scripts/ifup enp0s3‘
+   ‘$/etc/sysconfig/network-scripts/ifup enp0s8‘
     を実行して設定を反映する
 3. 設定が反映されてるか確認するため
-   '$ip addr'
+   ‘$ip addr‘
    を実行するとenp0s8に192.168.xxx.xxxってアドレスが振られてる
 4. enp0s8のipアドレスを覚えてubuntuの端末から$ssh 192.168.xxx.xxxでアクセスする
 
 ## プロキシの設定
 
 1. $vi /etc/profile ファイルに下記を追記する  
-'PROXY='172.16.40.1:8888'
+‘PROXY='172.16.40.1:8888
 export http_proxy=$PROXY 
 export HTTP_PROXY=$PROXY  
 export HTTPS_PROXY=$PROXY  
-export https_proxy=$PROXY'
+export https_proxy=$PROXY‘
 2. yumにプロキシを設定  
 $vi /etc/yum.confに下記を追記  
-'proxy=http://172.16.40.1:8888/'
+‘proxy=http://172.16.40.1:8888/‘
 3. wgetにプロキシを設定  
 $vi /etc/wgetrcに下記を追記  
-'http_proxy = 172.16.40.1:8888/  
+‘http_proxy = 172.16.40.1:8888/  
 https_proxy = 172.16.40.1:8888/  
-ftp_proxy = 172.16.40.1:8888/'
+ftp_proxy = 172.16.40.1:8888/‘
 8. プロキシの設定が終わったのでupdateする  
-'yum update'
+‘yum update‘
 
 
 
