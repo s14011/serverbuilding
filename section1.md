@@ -54,7 +54,7 @@ $vi /etc/wgetrcに下記を追記
 https_proxy = 172.16.40.1:8888/  
 ftp_proxy = 172.16.40.1:8888/‘
 8. プロキシの設定が終わったのでupdateする  
-‘yum update‘
+‘$ yum update‘
 
 
 
