@@ -89,3 +89,43 @@ $firewall-cmd --add-service=http --zone=public --permanent
 $firewall-cmd --add-service=https --zone=public --permanent
 
 ## データベースの作成
+
+1. MySQLを起動する  
+$mysql -u root
+2. rootユーザーにパスワードを設定する  
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('xxxxxxxxxx');
+3. 1回終了してrootでログイン  
+mysql>exit $mysql -u root -p
+4. wordpressで使うデータベースを作成する  
+mysql> CREATE DATABASE データベース名;
+5. ユーザの作成  
+mysql> GRANT ALL PRIVILEGES ON データベース名.* to 'ユーザー名'@'localhost' IDENTIFIED BY '任意パスワード';
+
+## Wordpressのインストール
+
+1. Wordpressのzipファイルをインストールする  
+$wget https://ja.wordpress.org/wordpress-4.5.2-ja.zip
+2. インストールしたzipファイルを解凍する  
+$unzip wordpress-4.2.2-ja.zip
+3. 解凍したファイルを/var/www/htmlに移動する  
+$mv wordpress /var/www/html
+4. wordpressのフォルダに移動  
+$cd /var/www/html/wordpress
+5. wordpressフォルダのwp-config-sample.phpをコピーしてwp-config.phpを作成する  
+$cp wp-config-sample.php wp-confing.php
+6. コピーしたwp-config.phpの中を編集  
+$vi wp-config.php
+`WordPress のためのデータベース名`   
+`define('DB_NAME', 'database_name_here');`  
+↓  
+`define('DB_NAME', 'mysqlで作ったデータベース名');`  
+`MySQL データベースのユーザー名`  
+`define('DB_USER', 'username_here');`  
+↓  
+`define('DB_USER', 'mysqlで作ったデータベースの所有者名');`  
+`MySQL データベースのパスワード`  
+`define('DB_PASSWORD', 'password_here');`  
+↓  
+`define('DB_PASSWORD', 'mysqlで作ったデータベースの所有者名のパスワード');`
+7. 7 ブラウザからWordpressにアクセス  
+192.168.xxx.xxx/wordpress/wp-admin/install.php
