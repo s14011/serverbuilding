@@ -40,19 +40,19 @@
 ## プロキシの設定
 
 1. $vi /etc/profile ファイルに下記を追記する  
-‘PROXY='172.16.40.1:8888
-export http_proxy=$PROXY 
+PROXY='172.16.40.1:8888  
+export http_proxy=$PROXY  
 export HTTP_PROXY=$PROXY  
 export HTTPS_PROXY=$PROXY  
-export https_proxy=$PROXY‘
+export https_proxy=$PROXY
 2. yumにプロキシを設定  
 $vi /etc/yum.confに下記を追記  
-‘proxy=http://172.16.40.1:8888/‘
+proxy=http://172.16.40.1:8888/
 3. wgetにプロキシを設定  
 $vi /etc/wgetrcに下記を追記  
-‘http_proxy = 172.16.40.1:8888/  
+http_proxy = 172.16.40.1:8888/  
 https_proxy = 172.16.40.1:8888/  
-ftp_proxy = 172.16.40.1:8888/‘
+ftp_proxy = 172.16.40.1:8888/
 8. プロキシの設定が終わったのでupdateする  
 ‘$ yum update‘
 
