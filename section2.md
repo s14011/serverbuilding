@@ -103,8 +103,8 @@ $vi /etc/wgetrc ファイルに下記を追記
 
 http_proxy = 172.16.40.1:8888/  
 https_proxy = 172.16.40.1:8888/  
-ftp_proxy = 172.16.40.1:8888/
-4.  プロキシの設定が終わったのでupdateする  
+ftp_proxy = 172.16.40.1:8888/  
+4. プロキシの設定が終わったのでupdateする  
 $yum update
 
 ## 2-2.wordpressに必要なものをインストール
