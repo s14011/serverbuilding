@@ -226,14 +226,13 @@ WordPress のためのデータベース名
     ServerName www.example.com:80 ←の下に  
     ServerName localhost:80 ←これを追加  
     
-     <IfModule dir_module>  
-     DirectoryIndex index.html index.php  
-     </IfModule>  
-
+     `<IfModule dir_module>`  
+     `DirectoryIndex index.html index.php`  
+     `</IfModule>`  
     
-    <FilesMatch "\.ph(p[2-6]?|tml)$">  
-    SetHandler application/x-httpd-php  
-    </FilesMatch>  
+    `<FilesMatch "\.ph(p[2-6]?|tml)$">`  
+    `SetHandler application/x-httpd-php`  
+    `</FilesMatch>`  
     ↑これをてきとーに追加する!!!!!!!!!!!!
     
     `sudo /usr/local/apache2/bin/apachectl restart`で再起動させる
