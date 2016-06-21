@@ -227,7 +227,7 @@ WordPress のためのデータベース名
     ServerName localhost:80 ←これを追加  
     
      `<IfModule dir_module>`  
-     `DirectoryIndex index.html index.php`  ←index.phpを追加 
+     `DirectoryIndex index.html index.php`  ←index.phpを追加   
      `</IfModule>`  
     
     `<FilesMatch "\.ph(p[2-6]?|tml)$">`  
