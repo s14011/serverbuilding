@@ -227,7 +227,7 @@ WordPress のためのデータベース名
     ServerName localhost:80 ←これを追加  
     
      `<IfModule dir_module>`  
-     `DirectoryIndex index.html index.php`  
+     `DirectoryIndex index.html index.php`  ←index.phpを追加 
      `</IfModule>`  
     
     `<FilesMatch "\.ph(p[2-6]?|tml)$">`  
@@ -245,7 +245,7 @@ WordPress のためのデータベース名
 4. 一旦、下のやつをインストール  
    `$sudo yum install -y libxml2 libxml2-devel`
 
-   `$./configure --with-apxs2=/usr/local/apache2/bin/apxs --with-mysqli`
+   `$./configure --with-apxs2=/usr/local/apache2/bin/apxs --with-mysqli`  
    `$make`  
    `$sudo make install`
 5. php.iniの作成  
