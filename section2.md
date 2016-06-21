@@ -220,18 +220,18 @@ WordPress のためのデータベース名
 5. Apacheを起動させる  
    `$sudo /usr/local/apache2/bin/apachectl start`
 
-    エラーが出ます!!!!!!!!!!!!!!!
-    `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する
+    エラーが出ます!!!!!!!!!!!!!!!  
+    `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する  
     
     ServerName www.example.com:80 ←の下に  
-    ServerName localhost:80 ←これを追加
+    ServerName localhost:80 ←これを追加  
     
-    <IfModule dir_module>
-    DirectoryIndex index.html ←ここに`index.php`を追加する
-    </IfModule>
+    <IfModule dir_module>  
+    DirectoryIndex index.html ←ここに`index.php`を追加する  
+    </IfModule>  
     
-    <FilesMatch "\.ph(p[2-6]?|tml)$">
-    SetHandler application/x-httpd-php
+    <FilesMatch "\.ph(p[2-6]?|tml)$">  
+    SetHandler application/x-httpd-php  
     </FilesMatch>  
     ↑これをてきとーに追加する!!!!!!!!!!!!
     
