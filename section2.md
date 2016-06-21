@@ -223,7 +223,7 @@ WordPress のためのデータベース名
     エラーが出ます!!!!!!!!!!!!!!!
     `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する↓
     
-    #ServerName www.example.com:80 ←の下に  
+    ServerName www.example.com:80 ←の下に  
     ServerName localhost:80
     
     sudo /usr/local/apache2/bin/apachectl restartで再起動させる
