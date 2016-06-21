@@ -226,9 +226,10 @@ WordPress のためのデータベース名
     ServerName www.example.com:80 ←の下に  
     ServerName localhost:80 ←これを追加  
     
-    <IfModule dir_module>  
-    DirectoryIndex index.html ←ここに`index.php`を追加する  
-    </IfModule>  
+     <IfModule dir_module>  
+     DirectoryIndex index.html index.php  
+     </IfModule>  
+
     
     <FilesMatch "\.ph(p[2-6]?|tml)$">  
     SetHandler application/x-httpd-php  
