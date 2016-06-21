@@ -182,4 +182,26 @@ WordPress のためのデータベース名
      
 22. 192.16.56.129/wordpress/wp-admin/ でアクセスする
 
-## 2-3
+## 2-3 プロキシの設定
+
+1. プロキシの設定  
+   `$vi /etc/profile` ファイルに下記を追記  
+
+    PROXY='172.16.40.1:8888'  
+    export http_proxy=$PROXY  
+    export HTTP_PROXY=$PROXY  
+    export HTTPS_PROXY=$PROXY  
+    export https_proxy=$PROXY
+    
+2. yumにプロキシを設定する  
+   `$vi /etc/yum.conf` ファイルに下記を追記
+3. wgetにプロキシを設定  
+    
+    http_proxy = 172.16.40.1:8888/  
+    https_proxy = 172.16.40.1:8888/  
+    ftp_proxy = 172.16.40.1:8888/
+4. yumのアップデートをする  
+    `$yum update`
+
+## 2-3 Wordpressに必要なものをインストール
+
