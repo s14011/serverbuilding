@@ -180,7 +180,7 @@ WordPress のためのデータベース名
     ↓
      define('DB_PASSWORD', 'mysqlで作ったデータベースの所有者名のパスワード');  
      
-22. 192.16.56.129/wordpress/wp-admin/ でアクセスする
+22. 自分のIPアドレス/wordpress/wp-admin/ でアクセスする
 
 ## 2-3 プロキシの設定
 
@@ -221,11 +221,74 @@ WordPress のためのデータベース名
    `$sudo /usr/local/apache2/bin/apachectl start`
 
     エラーが出ます!!!!!!!!!!!!!!!
-    `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する↓
+    `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する
     
     ServerName www.example.com:80 ←の下に  
-    ServerName localhost:80
+    ServerName localhost:80 ←これを追加
     
-    sudo /usr/local/apache2/bin/apachectl restartで再起動させる
+    <IfModule dir_module>
+    DirectoryIndex index.html ←ここに`index.php`を追加する
+    </IfModule>
     
-6. 
+    <FilesMatch "\.ph(p[2-6]?|tml)$">
+    SetHandler application/x-httpd-php
+    </FilesMatch>  
+    ↑これをてきとーに追加する!!!!!!!!!!!!
+    
+    `sudo /usr/local/apache2/bin/apachectl restart`で再起動させる
+    
+## 2-3 phpのインストール
+
+1. `$wget http://jp2.php.net/get/php-7.0.6.tar.bz2/from/this/mirror`
+2. `$tar -xvf mirror`で解凍
+3. `$cd php-7.0.6/`で移動する
+4. 一旦、下のやつをインストール  
+   `$sudo yum install -y libxml2 libxml2-devel`
+
+   `$./configure --with-apxs2=/usr/local/apache2/bin/apxs --with-mysqli`
+   `$make`  
+   `$sudo make install`
+5. php.iniの作成  
+   `sudo cp php.ini-development /usr/local/lib/php.ini`
+   
+## 2-3 データベースのインストール
+
+1. `$sudo yum -y install mariadb mariadb-devel mariadb-server`
+2. `$sudo systemctl start mariadb`で起動させる!!
+3. mariadbを起動する  
+   `$mysql -u root`
+4. rootユーザーにパスワードを設定する  
+   `MariaDB [(none)]> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('xxxxxxxxxx');`
+5. 1回終了してrootでログイン  
+   
+   `MariaDB [(none)]> exit`
+   `$mysql -u root -p`
+6. データベースの作成  
+   `MariaDB [(none)]> CREATE DATABASE データベース名;`  
+   `MariaDB [(none)]> GRANT ALL PRIVILEGES ON データベース名.* to 'ユーザー名'@'localhost' IDENTIFIED BY '任意パスワード';`
+7. `$sudo systemctl restart mariadb`で再起動する
+
+## Wordpressのインストール
+
+1. `$wget http://wordpress.org/latest.tar.gz`
+2. `$tar -xvf latest.tar.gz`で解凍する
+3. `$sudo mv wordpress/ /usr/local/apache2/htdocs/`で移動させる
+4. `$cd /usr/local/apache2/htdocs/wordpress`で移動
+5. `$cp wp-config-sample.php wp-config.php`でwp-config.phpを作成
+6. `vi wp-config.php`でwp-config.phpを編集  
+
+    WordPress のためのデータベース名    
+      define('DB_NAME', 'database_name_here');    
+     ↓  
+      define('DB_NAME', 'mysqlで作ったデータベース名');    
+      MySQL データベースのユーザー名    
+      define('DB_USER', 'username_here');    
+     ↓  
+      define('DB_USER', 'mysqlで作ったデータベースの所有者名');    
+      MySQL データベースのパスワード    
+      define('DB_PASSWORD', 'password_here');    
+     ↓  
+      define('DB_PASSWORD', 'mysqlで作ったデータベースの所有者名のパスワード');
+7. 自分のIPアドレス/wp-admin/install.phpにアクセスする!!!!
+
+## 2-4
