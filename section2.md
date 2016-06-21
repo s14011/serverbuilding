@@ -205,3 +205,27 @@ WordPress のためのデータベース名
 
 ## 2-3 Wordpressに必要なものをインストール
 
+1. Apacheのインストール  
+   `$wget http://ftp.yz.yamagata-u.ac.jp/pub/network/apache//httpd/httpd-2.2.31.tar.gz`
+2. ファイルの解凍  
+    `$tar -xvf httpd-2.2.31.tar.gz`
+3. ファイルに移動する  
+    `$cd httpd-2.2.31`
+4. Apacheのインストール  
+   
+    $./configure    
+    $make  
+    $sudo make install
+
+5. Apacheを起動させる  
+   `$sudo /usr/local/apache2/bin/apachectl start`
+
+    エラーが出ます!!!!!!!!!!!!!!!
+    `sudo vi /usr/local/apache2/conf/httpd.conf`ファイルに追加する↓
+    
+    #ServerName www.example.com:80 ←の下に  
+    ServerName localhost:80
+    
+    sudo /usr/local/apache2/bin/apachectl restartで再起動させる
+    
+6. 
