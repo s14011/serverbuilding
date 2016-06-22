@@ -298,6 +298,14 @@ WordPress のためのデータベース名
 3. PageSpeedで速度を調べる  
 
 
-![あがったやつ](https://github.com/s14011/serverbuilding/blob/master/benti/hutuu.png "あがった")  
+![ふつう](https://github.com/s14011/serverbuilding/blob/master/benti/hutuu.png "ふつう")  
+
+- ↑の画像がプラグインがはいってないやつ(78/100)  
+
+![あがった](https://github.com/s14011/serverbuilding/blob/master/benti/agatta.png "あがった")  
+
+- ↑の画像がプラグインをいれたやつ(79/100)
+
+
 
 
