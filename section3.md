@@ -29,12 +29,12 @@
 ## 3-1 ansibleでwordpressをうごかす
 
 1. hostsファイルを作成  
-   $ echo 自分のサーバーのIPアドレス > hosts  
+   `$ echo 自分のサーバーのIPアドレス > hosts`  
 2. playbook.ymlをつくって設定を書く
 3. ディレクトリをつくる  
-   $ mkdir nginx php-fpm wordpress   
+   `$ mkdir nginx php-fpm wordpress`   
 4. コマンドでplaybookを実行する  
-   $ ansible-playbook playbook.yml -i hosts  --private-key ~/.vagrant.d/insecure_private_key -u vagrant -k -vv
+   `$ ansible-playbook playbook.yml -i hosts  --private-key ~/.vagrant.d/insecure_private_key -u vagrant -k -vv`
 5. wordpressが立ち上がってるか確認する  
-   自分のIPアドレス/wp-admin
+   `自分のIPアドレス/wp-admin`
 
