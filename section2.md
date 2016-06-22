@@ -291,4 +291,8 @@ WordPress のためのデータベース名
       define('DB_PASSWORD', 'mysqlで作ったデータベースの所有者名のパスワード');
 7. 自分のIPアドレス/wp-admin/install.phpにアクセスする!!!!
 
-## 2-4
+## 2-4 ベンチマーク
+
+1. wordpressにプラグインをいれる(scpでつっこむ)
+2. GoogleストアでChromeにPageSpeed Insights をいれる
+3. PageSpeedで速度を調べる
