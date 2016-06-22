@@ -295,7 +295,7 @@ WordPress のためのデータベース名
 
 1. GoogleストアでChromeにPageSpeed Insights をいれる
 2. wordpressにプラグインをいれる(scpでつっこむ)
-3. PageSpeedで速度を調べる  
+3. PageSpeedで速度を調べる(プラグインいれたやつといれてないやつの2つ調べる)  
 
 
 ![ふつう](https://github.com/s14011/serverbuilding/blob/master/benti/hutuu.png "ふつう")  
