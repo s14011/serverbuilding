@@ -293,8 +293,8 @@ WordPress のためのデータベース名
 
 ## 2-4 ベンチマーク
 
-1. wordpressにプラグインをいれる(scpでつっこむ)
-2. GoogleストアでChromeにPageSpeed Insights をいれる
+1. GoogleストアでChromeにPageSpeed Insights をいれる
+2. wordpressにプラグインをいれる(scpでつっこむ)
 3. PageSpeedで速度を調べる  
 
 
@@ -304,7 +304,9 @@ WordPress のためのデータベース名
 
 ![あがった](https://github.com/s14011/serverbuilding/blob/master/benti/agatta.png "あがった")  
 
-- ↑の画像がプラグインをいれたやつ(79/100)
+- ↑の画像がプラグインをいれたやつ(79/100)  
+
+## 1点あがった!!!!!!!!!!!!!!!!!!!!
 
 
 
