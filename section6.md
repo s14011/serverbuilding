@@ -26,3 +26,21 @@
 10. グループを選択して右クリックしてインバウンドルールの編集を選択してルールを追加をクリックしてHTTPを追加する
 11. ansibelを実行する※やり方は下の方に書いてる                           
 12. ブラウザからアクセス(http://52.68.182.11)
+
+## SSH接続  
+     さっき作っさキーファイルのアクセス権限を変更
+     `$chmod 400 n14002.pem`
+     ssh接続                                                                  
+     `$ssh -i キーファイル ec2-user@52.68.182.11`  
+  
+## ansibleを実行するための準備  
+     hostsファイルの作成  
+     `$vi hosts`  
+  
+      [all]  
+      52.68.182.11(sshした時のIPアドレス)
+  
+## ansible実行
+  `$ansible-playbook 実行したいファイル -i hosts  --private-key ~/.aws/n14011.pem`
+  
+     [section6_ansible](section6_ansible)
