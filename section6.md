@@ -44,3 +44,16 @@
   `$ansible-playbook 実行したいファイル -i hosts  --private-key ~/.aws/n14011.pem`
   
      [section6_ansible](section6_ansible)
+     
+# 6-2 AWS EC2(AMIMOTO)
+  
+1 Amazon web servicesにログインする  
+2 EC2のアイコンをクリックしてEC2のダッシューボードにアクセス  
+3 インスタンスの作成をクリック  
+4 左のメニューバーから`AWS Marketplace`を選択して`AMIMOTO`を検索する  
+5 `WordPress powered by AMIMOTO (HHVM)`を選択  
+6 表の一番上の`t2.micro`を選択して右下にある確認と作成をクリック  
+7 セキュリティグループのところでエラーが出るので編集を選択  
+8 セキュリティグループを6-1で作ったものに変える  
+9 6−1で作ったキー名を選択してインスタンスの作成をクリック               
+10 ブラウザからアクセス(http://52.68.235.54)
