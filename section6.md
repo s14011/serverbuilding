@@ -1,11 +1,11 @@
 # 6-1 AWS EC2 + Ansible                                                     
- ## pipをインストール
+## pipをインストール
     `$sudo apt-get install python-pip`
- ## awscliをインストール
+## awscliをインストール
     `$sudo pip install awscli`
- ## awscliの設定
+## awscliの設定
  
-     $ aws configure
+    $ aws configure
     AWS Access Key ID [None]: 先生からもらったID
     AWS Secret Access Key [None]: 先生からもらったKey
     Default region name [None]: ap-northeast-1
